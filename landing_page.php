@@ -3,19 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistem Informasi Apotek</title>
+    <title>Sistem Presensi Digital Apotik</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow-x: hidden;
         }
         
         body {
-            background-color: #f0f5ff;
+            background-color: #f8f9fa;
             color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
         
         .container {
@@ -23,23 +37,29 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            max-width: 100%;
+            padding: 0;
+            margin: 0;
         }
         
         header {
-            background-color: #1a73e8;
+            background-color: #0d6efd;
             color: white;
             padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
         }
         
         .logo {
             font-size: 1.8rem;
-            font-weight: bold;
+            font-weight: 700;
             display: flex;
             align-items: center;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 0.5px;
         }
         
         .logo i {
@@ -73,7 +93,7 @@
         
         .btn-primary {
             background-color: white;
-            color: #1a73e8;
+            color: #0d6efd;
         }
         
         .btn-primary:hover {
@@ -86,22 +106,28 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 3rem 1rem;
+            padding: 4rem 1rem;
             flex: 1;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            width: 100%;
         }
         
         .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: #1a73e8;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: #0d6efd;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 0.5px;
         }
         
         .hero p {
             font-size: 1.2rem;
             max-width: 800px;
-            line-height: 1.6;
+            line-height: 1.8;
             margin-bottom: 2rem;
-            color: #555;
+            color: #495057;
+            font-weight: 400;
         }
         
         .modal {
@@ -135,7 +161,9 @@
         
         .modal-title {
             font-size: 1.5rem;
-            color: #1a73e8;
+            color: #0d6efd;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
         }
         
         .close {
@@ -151,21 +179,21 @@
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
-            color: #555;
+            color: #495057;
             font-weight: 500;
         }
         
         .form-control {
             width: 100%;
             padding: 0.8rem;
-            border: 1px solid #ddd;
+            border: 1px solid #ced4da;
             border-radius: 4px;
             font-size: 1rem;
         }
         
         .form-control:focus {
             outline: none;
-            border-color: #1a73e8;
+            border-color: #0d6efd;
         }
         
         .form-footer {
@@ -174,7 +202,7 @@
         }
         
         .form-footer a {
-            color: #1a73e8;
+            color: #0d6efd;
             text-decoration: none;
         }
         
@@ -183,7 +211,7 @@
         }
         
         .btn-submit {
-            background-color: #1a73e8;
+            background-color: #0d6efd;
             color: white;
             width: 100%;
             padding: 0.8rem;
@@ -191,15 +219,16 @@
         }
         
         .btn-submit:hover {
-            background-color: #0d62d1;
+            background-color: #0b5ed7;
         }
         
         footer {
-            background-color: #1a73e8;
+            background-color: #0d6efd;
             color: white;
             text-align: center;
             padding: 1.5rem;
             margin-top: auto;
+            width: 100%;
         }
         
         .features {
@@ -207,18 +236,21 @@
             justify-content: center;
             flex-wrap: wrap;
             gap: 2rem;
-            padding: 2rem;
+            padding: 3rem 2rem;
             background-color: white;
+            width: 100%;
         }
         
         .feature-card {
             background-color: white;
             border-radius: 8px;
-            padding: 1.5rem;
-            width: 300px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2.5rem;
+            width: 45%;
+            min-width: 300px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             text-align: center;
             transition: transform 0.3s ease;
+            border: 1px solid #e9ecef;
         }
         
         .feature-card:hover {
@@ -226,20 +258,127 @@
         }
         
         .feature-icon {
-            font-size: 2.5rem;
-            color: #1a73e8;
-            margin-bottom: 1rem;
+            font-size: 3.5rem;
+            color: #0d6efd;
+            margin-bottom: 1.5rem;
         }
         
         .feature-title {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            color: #333;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #212529;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
         }
         
         .feature-description {
-            color: #666;
-            line-height: 1.5;
+            color: #495057;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            font-weight: 400;
+        }
+        
+        .social-media {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .social-media a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: opacity 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .social-media a:hover {
+            opacity: 0.8;
+        }
+        
+        .social-media i {
+            font-size: 1.2rem;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .feature-card {
+                width: 80%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-buttons {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .hero {
+                padding: 3rem 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .feature-card {
+                width: 100%;
+                padding: 2rem;
+            }
+            
+            .feature-title {
+                font-size: 1.5rem;
+            }
+            
+            .feature-description {
+                font-size: 1rem;
+            }
+            
+            .social-media {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            .btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .features {
+                padding: 2rem 1rem;
+            }
         }
     </style>
 </head>
@@ -247,8 +386,8 @@
     <div class="container">
         <header>
             <div class="logo">
-                <i class="fas fa-clinic-medical"></i>
-                SisInfo Apotek
+                <i class="fas fa-clock"></i>
+                <span>Presensi Apotik</span>
             </div>
             <div class="nav-buttons">
                 <button class="btn btn-outline" onclick="showLoginModal()">Masuk</button>
@@ -257,39 +396,45 @@
         </header>
         
         <section class="hero">
-            <h1>Sistem Informasi Apotek Modern</h1>
-            <p>Kelola inventaris, transaksi, dan layanan apotek Anda dengan lebih efisien menggunakan sistem informasi apotek terpadu yang kami sediakan.</p>
+            <h1>Sistem Presensi Sina Medika</h1>
+            <p>Solusi modern untuk manajemen kehadiran karyawan apotek yang akurat, efisien, dan terintegrasi</p>
             <button class="btn btn-primary" onclick="showRegisterModal()">Mulai Sekarang</button>
         </section>
         
         <section class="features">
             <div class="feature-card">
                 <div class="feature-icon">
-                    <i class="fas fa-pills"></i>
+                    <i class="fas fa-bullseye"></i>
                 </div>
-                <h3 class="feature-title">Manajemen Obat</h3>
-                <p class="feature-description">Kelola stok obat dengan mudah, termasuk tanggal kedaluwarsa dan notifikasi stok menipis.</p>
+                <h3 class="feature-title">Visi</h3>
+                <p class="feature-description">Menjadi solusi presensi digital terbaik untuk apotek, meningkatkan efisiensi dan akurasi manajemen kehadiran karyawan dengan teknologi modern.</p>
             </div>
             
             <div class="feature-card">
                 <div class="feature-icon">
-                    <i class="fas fa-cash-register"></i>
+                    <i class="fas fa-tasks"></i>
                 </div>
-                <h3 class="feature-title">Kasir Terintegrasi</h3>
-                <p class="feature-description">Proses transaksi dengan cepat dan efisien dengan sistem kasir yang terintegrasi.</p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-                <h3 class="feature-title">Laporan & Analitik</h3>
-                <p class="feature-description">Dapatkan laporan penjualan, pembelian, dan keuntungan dengan visualisasi yang mudah dipahami.</p>
+                <h3 class="feature-title">Misi</h3>
+                <p class="feature-description">
+                    1. Memberikan sistem presensi yang akurat, aman, dan mudah digunakan.<br><br>
+                    2. Meningkatkan efisiensi operasional apotek melalui otomatisasi pencatatan kehadiran.<br><br>
+                    3. Menyediakan layanan berbasis teknologi untuk meningkatkan produktivitas tenaga kerja di apotek.
+                </p>
             </div>
         </section>
         
         <footer>
-            <p>&copy; 2023 Sistem Informasi Apotek. Semua hak cipta dilindungi.</p>
+            <div class="social-media">
+                <a href="https://wa.me/6285423330754" target="_blank">
+                    <i class="fab fa-whatsapp"></i> WhatsApp: 0854 2333 0754
+                </a>
+                <a href="https://instagram.com/Sina_Medikaaaa" target="_blank">
+                    <i class="fab fa-instagram"></i> Instagram: Sina_Medikaaaa
+                </a>
+                <a href="mailto:sinamedika@gmail.com">
+                    <i class="far fa-envelope"></i> Email: sinamedika@gmail.com
+                </a>
+            </div>
         </footer>
     </div>
     
@@ -370,6 +515,8 @@
         </div>
     </div>
     
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Show modal functions
         function showLoginModal() {
